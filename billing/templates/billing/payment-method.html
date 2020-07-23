@@ -1,0 +1,21 @@
+{#{%  if mpesa_qs.exists or cash_qs.exists %}#}
+    <form method="POST" action="{{ action_url }}">
+        {% if next_url %}
+            <input type="hidden" name="next" value="{{ next_url }}" />
+        {% endif %}
+        {% csrf_token %}
+            {% if payment_type %}
+                <input type="hidden" name="payment_type" value="{{ payment_type }}" />
+            {% endif %}
+            <label>
+                <input type="radio" name="Mpesa"/>
+                    Pay with Mpesa?
+                {{ form.as_p }}
+            </label>
+            <label>
+                <input type="radio" name="COD"/>
+                    Pay Cash on Delivery(COD)?
+            </label>
+            <button type="submit" class="btn btn-success">Proceed</button>
+    </form>
+{#{% endif %}#}

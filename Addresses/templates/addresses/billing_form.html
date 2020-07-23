@@ -1,0 +1,21 @@
+<form method="POST" action="{% if action_url %}{{ action_url }}{% else %}{% url "Login" %}{% endif %}">
+    {% csrf_token %}
+    {% if next_url %}
+        <input type="hidden" name="next" value="{{ next_url }}"/>
+    {% endif %}
+    {% if address_type %}
+        <input type="hidden" name="address_type" value="{{ address_type }}"/>
+    {% endif %}
+    {{ form.as_p  }}
+{#    <label>#}
+{#        <input type="radio" name="Mpesa"/>#}
+{#            Pay with Mpesa?#}
+{#        {{ form2.as_p }}#}
+{#    </label><br/>#}
+    <label>
+        <input type="radio" name="COD"/>
+            Pay Cash on Delivery(COD)?
+    </label>
+    <button type="submit" class="btn btn-success">Proceed</button>
+{#    <button type="submit" class="btn btn-success">Submit</button>#}
+</form>

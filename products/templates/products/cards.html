@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" style="width: 20rem;">
+    {% if instance.image %}
+        <a href="{{ instance.get_absolute_url }}">
+        <img class="card-img-top" src="{{ instance.image.url }}" alt="{{ instance.title }} logo">
+        </a>
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">{{ instance.title }}</h4>
+        <p class="card-text">{{ instance.description|linebreaks|truncatewords:12 }}</p>
+        <a href="{{ instance.get_absolute_url }}" class="btn btn-primary"> View</a>
+            {% include 'products/update-cart.html' with product=instance cart=cart %}
+        <!--a href="{% url 'products:detail' slug=instance.slug %}" class="btn btn-warning">URL Shortcut</a-->
+    </div>
+</div>
+
+</body>
+</html>
